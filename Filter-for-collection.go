@@ -8,12 +8,31 @@ import (
 )
 
 func filter(predicate func(int) bool, iterable []int) []int {
+	var src []int
+	for _, n := range iterable {
+		b := predicate(n)
+		if b == true {
+			src = append(src, n)
+		}
+	}
+	return src
 	// отфильтруйте `iterable` с помощью `predicate`
 	// и верните отфильтрованный срез
 }
 
 func main() {
 	src := readInput()
+	result := func(n int) (b bool) {
+		if n%2 == 0 {
+			b = true
+		} else {
+			b = false
+		}
+		return b
+	}
+
+	res := filter(result, src)
+
 	// отфильтруйте `src` так, чтобы остались только четные числа
 	// и запишите результат в `res`
 	// res := filter(...)
